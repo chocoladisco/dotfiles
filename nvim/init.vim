@@ -47,9 +47,9 @@ let g:UltiSnipsJumpForwardTrigger='<c-b>'
 let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
 " Docstring
-let g:snips_author = 'Malte Sönnichsen'
-let g:snips_github = 'https://github.com/Chacki'
-let g:snips_email = 'chacki@users.noreply.github.com'
+let g:snips_author = 'Rafael X. Morales Georgi'
+let g:snips_github = 'https://github.com/chocoladisco'
+let g:snips_email = 'chocoladisco@gmail.com'
 
 " LanguageTool
 let g:grammarous#languagetool_cmd = 'languagetool-commandline'
