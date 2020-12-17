@@ -8,3 +8,5 @@
 !tmux/*
 !fish/
 !fish/config.fish
+!nixpkgs
+!nixpkgs/**
