@@ -219,7 +219,7 @@ require("nvim-autopairs.completion.compe").setup({
 -- treesitter ------------------------------------------------------------------
 require'nvim-treesitter.configs'.setup {
     -- Integration with the autopairs plugin
-    autopairs = {enable = true}
+    autopairs = {enable = true},
     ensure_installed = "maintained",
     highlight = {
         enable = true,
