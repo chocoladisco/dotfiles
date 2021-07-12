@@ -22,7 +22,6 @@
       enable = true;
       withNodeJs = true;
       withPython3 = true;
-      package = pkgs.neovim-nightly;
     };
     tmux = {
       enable = true;
