@@ -1,6 +1,23 @@
-if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end;
-fundle plugin 'edc/bass'
-fundle plugin 'franciscolourenco/done'
-fundle plugin 'fishpkg/fish-humanize-duration'
-fundle init
-if test -e ~/.bash_profile; bass source ~/.bash_profile; end;
+set fish_greeting
+
+
+
+set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+
+# no login shell
+if status is-interactive
+# not already in tmux session
+and not set -q TMUX
+    if test -z (tmux ls -f '#{==:#{session_name},$(USER)}}' -F '#{?session_attached,yes,}')
+        exec tmux -u new -A -s $USER
+    end
+end
+
+if command --search starship > /dev/null
+    starship init fish | source
+end
+
+if command --search direnv > /dev/null
+    eval (direnv hook fish)
+end
+
