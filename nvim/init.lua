@@ -100,21 +100,30 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 local on_attach = function(client, bufnr)
+    bufnr = bufnr
+    client = client
     require'lsp_signature'.on_attach()
 end
-local lsps = { 
+local lsps = {
     'bashls',
-    'pyright', 
-    'rls', 
-    'rnix', 
-    'sumneko_lua', 
-    'texlab', 
+    'pyright',
+    'rls',
+    'rnix',
     {
-        server='clangd', 
+        server='sumneko_lua',
         cfg={
-            cmd = { 
-                "clangd", 
-                "--background-index" , 
+            cmd={
+                'lua-language-server'
+            }
+        }
+    },
+    'texlab',
+    {
+        server='clangd',
+        cfg={
+            cmd = {
+                "clangd",
+                "--background-index" ,
                 "--query-driver", (vim.env.NIX_CC or "/usr") .. "/bin/clang++"
             }
         }
@@ -257,6 +266,11 @@ nnoremap <leader>fb <cmd>lua require'telescope.builtin'.buffers()<CR>
 nnoremap <leader>fl <cmd>lua require'telescope.builtin'.grep_string{search=vim.fn.expand("%:t"), use_regex=false}<CR>
 nnoremap <leader>w  <cmd>update<CR>
 nnoremap <leader>q  <cmd>quit<CR>
+
+nnoremap <leader>Gb :Git blame<CR>
+nnoremap <leader>Gc :Git commit<CR>
+nnoremap <leader>Gw :Gwrite<CR>
+nnoremap <leader>G :Git<Space>
 
 nnoremap <leader>cc <cmd>ClangdSwitchSourceHeader<CR>
 ]])
