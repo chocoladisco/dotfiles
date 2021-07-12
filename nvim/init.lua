@@ -55,6 +55,7 @@ paq {
 	'rafamadriz/friendly-snippets';
     'nvim-treesitter/nvim-treesitter';
 	'nvim-treesitter/nvim-treesitter-refactor';
+	'windwp/nvim-autopairs';
     -- Navigation
 	'christoomey/vim-tmux-navigator';
 	'nvim-telescope/telescope.nvim';
@@ -201,9 +202,24 @@ vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 
-
+-- Auto Close brackets ---------------------------------------------------------
+local npairs = require('nvim-autopairs')
+npairs.setup({
+    check_ts = true,
+    ts_config = {
+        lua = {'string'},-- it will not add pair on that treesitter node
+        javascript = {'template_string'},
+        java = false,-- don't check treesitter on java
+    }
+})
+require("nvim-autopairs.completion.compe").setup({
+  map_cr = true, --  map <CR> on insert mode
+  map_complete = true -- it will auto insert `(` after select function or method item
+})
 -- treesitter ------------------------------------------------------------------
 require'nvim-treesitter.configs'.setup {
+    -- Integration with the autopairs plugin
+    autopairs = {enable = true}
     ensure_installed = "maintained",
     highlight = {
         enable = true,
